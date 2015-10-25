@@ -1,0 +1,153 @@
+20151025 210548.542 [63296] Sauce Connect 4.3.11, build 1760 53519d5
+20151025 210548.543 [63296] Trying to autodetect proxy settings
+20151025 210548.550 [63296] Starting up; pid 63296
+20151025 210548.550 [63296] Command line arguments: /Users/dignifiedquire/opensource/ipfs/node-ipfs-api/node_modules/sauce-connect-launcher/sc/sc-4.3.11-osx/bin/sc -P 5757 --logfile sauce_connect.log -u dignifiedquire -k **** --tunnel-identifier karma1445803543 --readyfile /var/folders/s5/3fwdyrls2dq919qy2h52hv300000gn/T/sc-launcher-readyfile
+20151025 210548.551 [63296] Using no proxy for connecting to Sauce Labs REST API.
+20151025 210548.938 [63296] Resolving saucelabs.com to 162.222.75.243 took 386 ms.
+20151025 210550.031 [63296] PROXY *** scproxy started ***
+20151025 210550.042 [63296] PROXY found DNS server 82.212.62.62
+20151025 210550.042 [63296] PROXY found DNS server 78.42.43.62
+20151025 210550.081 [63296] Started scproxy on port 52818.
+20151025 210550.081 [63296] Please wait for 'you may start your tests' to start your tests.
+20151025 210550.081 [63296] Starting secure remote tunnel VM...
+20151025 210556.379 [63296] Secure remote tunnel VM provisioned.
+20151025 210556.379 [63296] Tunnel ID: 2603c7f3765b460cbe8ca0abda9176f3
+20151025 210557.250 [63296] Secure remote tunnel VM is now: booting
+20151025 210604.932 [63296] Secure remote tunnel VM is now: running
+20151025 210604.932 [63296] Remote tunnel host is: maki78011.miso.saucelabs.com
+20151025 210604.932 [63296] Using no proxy for connecting to tunnel VM.
+20151025 210604.959 [63296] Resolving tunnel hostname to 162.222.78.11 took 26ms.
+20151025 210604.959 [63296] Starting Selenium listener...
+20151025 210604.959 [63296] Establishing secure TLS connection to tunnel...
+20151025 210604.961 [63296] [EVDNS] Added nameserver 82.212.62.62:53 as 0x7ff820f13170
+20151025 210604.961 [63296] [EVDNS] Added nameserver 78.42.43.62:53 as 0x7ff820d13650
+20151025 210604.962 [63296] Selenium listener started on port 5757.
+20151025 210605.173 [63296] MAIN connecting to KGP server maki78011.miso.saucelabs.com took 2788 ms
+20151025 210605.218 [63296] MAIN warning, failed to set KGP bufferevent priority to 0
+20151025 210606.966 [63296] Sauce Connect is up, you may start your tests.
+20151025 210613.227 [63296] PROXY 127.0.0.1:54320 -> GET http://crl.apple.com/timestamp.crl (247 bytes)
+20151025 210613.268 [63296] PROXY resolved 'crl.apple.com' to '17.171.8.17'
+20151025 210613.528 [63296] PROXY 127.0.0.1:54320 <- 200 crl.apple.com:80 (782 bytes)
+20151025 210614.988 [63296] PROXY 127.0.0.1:54320 -> GET https://help.apple.com/activitymonitor/mac/10.11/en.lproj/search.helpindex (380 bytes)
+20151025 210615.028 [63296] PROXY resolved 'help.apple.com' to '104.84.200.171'
+20151025 210615.186 [63296] PROXY 127.0.0.1:54320 <- 200 help.apple.com:443 (31887 bytes)
+20151025 210616.977 [63296] PROXY 127.0.0.1:54320 -> GET https://help.apple.com/automator/mac/10.11/en.lproj/search.helpindex (374 bytes)
+20151025 210616.987 [63296] PROXY resolved 'help.apple.com' to '104.84.200.171'
+20151025 210616.987 [63296] PROXY 127.0.0.1:54329 -> GET https://help.apple.com/facetime/mac/10.11/en.lproj/search.helpindex (373 bytes)
+20151025 210617.079 [63296] PROXY 127.0.0.1:54320 <- 200 help.apple.com:443 (53340 bytes)
+20151025 210617.152 [63296] PROXY 127.0.0.1:54329 <- 200 help.apple.com:443 (34460 bytes)
+20151025 210619.682 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210619.683 [63296] PROXY 127.0.0.1:54329 -> GET http://localhost:9876/?id=57369832 (473 bytes)
+20151025 210619.699 [63296] PROXY 127.0.0.1:54329 <- 200 localhost:9876 (2909 bytes)
+20151025 210620.046 [63296] PROXY 127.0.0.1:54329 -> GET http://localhost:9876/socket.io/socket.io.js (429 bytes)
+20151025 210620.055 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210620.055 [63296] PROXY 127.0.0.1:54320 -> GET http://localhost:9876/karma.js (415 bytes)
+20151025 210620.065 [63296] PROXY 127.0.0.1:54329 <- 200 localhost:9876 (174221 bytes)
+20151025 210620.075 [63296] PROXY 127.0.0.1:54320 <- 200 localhost:9876 (95969 bytes)
+20151025 210620.699 [63296] PROXY resolved 'help.apple.com' to '104.84.200.171'
+20151025 210620.700 [63296] PROXY 127.0.0.1:54341 -> GET https://help.apple.com/photos/mac/1.1/en.lproj/search.helpindex (369 bytes)
+20151025 210622.517 [63296] PROXY 127.0.0.1:54346 -> POST https://location.services.mozilla.com/v1/country?key=7e40f68c-7938-4c5d-9f95-e61647c213eb (598 bytes)
+20151025 210623.367 [63296] PROXY resolved 'location.services.mozilla.com' to '52.17.161.235'
+20151025 210623.890 [63296] PROXY 127.0.0.1:54341 <- 200 help.apple.com:443 (143676 bytes)
+20151025 210623.894 [63296] PROXY 127.0.0.1:54346 <- 200 location.services.mozilla.com:443 (230 bytes)
+20151025 210623.943 [63296] PROXY 127.0.0.1:54329 -> GET http://init-p01md.apple.com/bag (306 bytes)
+20151025 210623.982 [63296] PROXY resolved 'init-p01md.apple.com' to '109.193.193.207'
+20151025 210624.007 [63296] PROXY 127.0.0.1:54329 <- 200 init-p01md.apple.com:80 (9148 bytes)
+20151025 210624.135 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210624.135 [63296] PROXY 127.0.0.1:54350 -> GET http://localhost:9876/?id=71468928 (388 bytes)
+20151025 210624.137 [63296] PROXY 127.0.0.1:54350 <- 200 localhost:9876 (2909 bytes)
+20151025 210624.884 [63296] PROXY 127.0.0.1:54320 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803576909-0 (457 bytes)
+20151025 210624.895 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210624.895 [63296] PROXY 127.0.0.1:54352 -> GET http://localhost:9876/favicon.ico (418 bytes)
+20151025 210624.896 [63296] PROXY 127.0.0.1:54320 <- 200 localhost:9876 (311 bytes)
+20151025 210624.905 [63296] PROXY 127.0.0.1:54352 <- 200 localhost:9876 (5579 bytes)
+20151025 210625.554 [63296] PROXY resolved 'help.apple.com' to '104.84.200.171'
+20151025 210625.555 [63296] PROXY 127.0.0.1:54354 -> GET https://help.apple.com/scripteditor/mac/10.11/en.lproj/search.helpindex (377 bytes)
+20151025 210625.682 [63296] PROXY 127.0.0.1:54354 <- 200 help.apple.com:443 (50005 bytes)
+20151025 210627.550 [63296] PROXY 127.0.0.1:54320 -> GET https://search.services.mozilla.com/1/firefox/41.0/release/en-US/DE/default/default (536 bytes)
+20151025 210627.569 [63296] PROXY resolved 'search.services.mozilla.com' to '54.69.18.27'
+20151025 210627.735 [63296] PROXY 127.0.0.1:54352 -> GET http://localhost:9876/socket.io/socket.io.js (385 bytes)
+20151025 210627.735 [63296] PROXY 127.0.0.1:54350 -> GET http://localhost:9876/karma.js (371 bytes)
+20151025 210627.742 [63296] PROXY 127.0.0.1:54352 <- 200 localhost:9876 (174221 bytes)
+20151025 210627.744 [63296] PROXY 127.0.0.1:54350 <- 200 localhost:9876 (95969 bytes)
+20151025 210627.932 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210627.932 [63296] PROXY 127.0.0.1:54354 -> GET http://localhost:9876/favicon.ico (389 bytes)
+20151025 210627.941 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210627.941 [63296] PROXY 127.0.0.1:54329 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803579606-1 (490 bytes)
+20151025 210627.942 [63296] PROXY 127.0.0.1:54354 <- 200 localhost:9876 (9055 bytes)
+20151025 210627.946 [63296] PROXY 127.0.0.1:54329 <- 200 localhost:9876 (311 bytes)
+20151025 210628.110 [63296] PROXY resolved 'help.apple.com' to '104.84.200.171'
+20151025 210628.111 [63296] PROXY 127.0.0.1:54346 -> GET https://help.apple.com/chess/mac/10.11/en.lproj/search.helpindex (370 bytes)
+20151025 210628.194 [63296] PROXY 127.0.0.1:54346 <- 200 help.apple.com:443 (11405 bytes)
+20151025 210628.354 [63296] PROXY 127.0.0.1:54320 <- 200 search.services.mozilla.com:443 (194 bytes)
+20151025 210629.937 [63296] PROXY 127.0.0.1:54350 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581345-0 (473 bytes)
+20151025 210629.946 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210629.946 [63296] PROXY 127.0.0.1:54320 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581302-2&sid=qZS_PdOjzesgAirAAAAB (515 bytes)
+20151025 210629.948 [63296] PROXY 127.0.0.1:54350 <- 200 localhost:9876 (311 bytes)
+20151025 210629.950 [63296] PROXY 127.0.0.1:54320 <- 200 localhost:9876 (213 bytes)
+20151025 210630.267 [63296] PROXY 127.0.0.1:54320 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581758-1&sid=hhjiMNb5rxSYZf32AAAC (531 bytes)
+20151025 210630.268 [63296] PROXY 127.0.0.1:54320 <- 200 localhost:9876 (213 bytes)
+20151025 210630.312 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210630.312 [63296] PROXY 127.0.0.1:54363 -> POST http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581666-3&sid=qZS_PdOjzesgAirAAAAB (768 bytes)
+20151025 210630.321 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210630.322 [63296] PROXY 127.0.0.1:54346 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581667-4&sid=qZS_PdOjzesgAirAAAAB (515 bytes)
+20151025 210630.341 [63296] PROXY 127.0.0.1:54363 <- 200 localhost:9876 (255 bytes)
+20151025 210630.342 [63296] PROXY 127.0.0.1:54346 <- 200 localhost:9876 (466 bytes)
+20151025 210630.504 [63296] PROXY resolved 'help.apple.com' to '104.84.200.171'
+20151025 210630.504 [63296] PROXY 127.0.0.1:54329 -> GET https://help.apple.com/machelp/mac/10.11/en.lproj/search.helpindex (372 bytes)
+20151025 210630.507 [63296] PROXY 127.0.0.1:54354 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581968-3&sid=hhjiMNb5rxSYZf32AAAC (531 bytes)
+20151025 210630.508 [63296] PROXY 127.0.0.1:54354 <- 200 localhost:9876 (398 bytes)
+20151025 210630.606 [63296] Cleaning up.
+20151025 210630.715 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210630.716 [63296] PROXY 127.0.0.1:54367 -> POST http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803581968-2&sid=hhjiMNb5rxSYZf32AAAC (738 bytes)
+20151025 210630.716 [63296] PROXY 127.0.0.1:54367 <- localhost:9876 connection error: Connection refused
+20151025 210630.858 [63296] PROXY 127.0.0.1:54329 <- 200 help.apple.com:443 (884336 bytes)
+20151025 210630.870 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210630.870 [63296] PROXY 127.0.0.1:54379 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803582051-5&sid=qZS_PdOjzesgAirAAAAB (515 bytes)
+20151025 210630.872 [63296] PROXY 127.0.0.1:54379 <- localhost:9876 connection error: Connection refused
+20151025 210630.909 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210630.909 [63296] PROXY 127.0.0.1:54381 -> GET http://localhost:9876/context.html (520 bytes)
+20151025 210630.918 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210630.918 [63296] PROXY 127.0.0.1:54380 -> GET http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803582227-4&sid=hhjiMNb5rxSYZf32AAAC (531 bytes)
+20151025 210630.918 [63296] PROXY 127.0.0.1:54381 <- localhost:9876 connection error: Connection refused
+20151025 210630.918 [63296] PROXY 127.0.0.1:54380 <- localhost:9876 connection error: Connection refused
+20151025 210631.531 [63296] Shutting down named tunnel karma1445803543 (2603c7f3765b460cbe8ca0abda9176f3).
+20151025 210632.439 [63296] PROXY resolved 'localhost' to '127.0.0.1'
+20151025 210632.440 [63296] PROXY 127.0.0.1:54393 -> POST http://localhost:9876/socket.io/?EIO=3&transport=polling&t=1445803583459-5&sid=hhjiMNb5rxSYZf32AAAC (611 bytes)
+20151025 210632.440 [63296] PROXY 127.0.0.1:54393 <- localhost:9876 connection error: Connection refused
+20151025 210634.829 [63296] KGP warning: no keepalive ack for > 5s
+20151025 210635.829 [63296] KGP warning: no keepalive ack for > 5s
+20151025 210636.166 [63296] Goodbye.
+20151025 210642.990 [63405] Sauce Connect 4.3.11, build 1760 53519d5
+20151025 210642.991 [63405] Trying to autodetect proxy settings
+20151025 210642.998 [63405] Starting up; pid 63405
+20151025 210642.998 [63405] Command line arguments: /Users/dignifiedquire/opensource/ipfs/node-ipfs-api/node_modules/sauce-connect-launcher/sc/sc-4.3.11-osx/bin/sc -P 5757 --logfile sauce_connect.log -u dignifiedquire -k **** --tunnel-identifier karma1445803603 --readyfile /var/folders/s5/3fwdyrls2dq919qy2h52hv300000gn/T/sc-launcher-readyfile
+20151025 210642.999 [63405] Using no proxy for connecting to Sauce Labs REST API.
+20151025 210643.000 [63405] Resolving saucelabs.com to 162.222.75.243 took 2998 ms.
+20151025 210644.061 [63405] PROXY *** scproxy started ***
+20151025 210644.070 [63405] PROXY found DNS server 82.212.62.62
+20151025 210644.070 [63405] PROXY found DNS server 78.42.43.62
+20151025 210644.112 [63405] Started scproxy on port 54412.
+20151025 210644.112 [63405] Please wait for 'you may start your tests' to start your tests.
+20151025 210644.112 [63405] Starting secure remote tunnel VM...
+20151025 210649.610 [63405] Secure remote tunnel VM provisioned.
+20151025 210649.610 [63405] Tunnel ID: 1cb2bf01fc754d40b2f4d224c64afbd9
+20151025 210650.238 [63405] Secure remote tunnel VM is now: booting
+20151025 210705.041 [63405] Secure remote tunnel VM is now: running
+20151025 210705.042 [63405] Remote tunnel host is: maki79166.miso.saucelabs.com
+20151025 210705.042 [63405] Using no proxy for connecting to tunnel VM.
+20151025 210705.077 [63405] Resolving tunnel hostname to 162.222.79.166 took 35ms.
+20151025 210705.077 [63405] Starting Selenium listener...
+20151025 210705.077 [63405] Establishing secure TLS connection to tunnel...
+20151025 210705.083 [63405] [EVDNS] Added nameserver 82.212.62.62:53 as 0x7fc1cb53af30
+20151025 210705.083 [63405] [EVDNS] Added nameserver 78.42.43.62:53 as 0x7fc1cb5367b0
+20151025 210705.084 [63405] Selenium listener started on port 5757.
+20151025 210705.324 [63405] MAIN connecting to KGP server maki79166.miso.saucelabs.com took 239 ms
+20151025 210705.365 [63405] MAIN warning, failed to set KGP bufferevent priority to 0
+20151025 210707.034 [63405] Sauce Connect is up, you may start your tests.
+20151025 210710.559 [63405] PROXY 127.0.0.1:54446 -> GET http://crl.apple.com/timestamp.crl (247 bytes)
+20151025 210710.578 [63405] PROXY resolved 'crl.apple.com' to '17.171.8.17'
+20151025 210710.856 [63405] PROXY 127.0.0.1:54446 <- 200 crl.apple.com:80 (782 bytes)
+20151025 210712.084 [63405] Cleaning up.
+20151025 210712.969 [63405] Shutting down named tunnel karma1445803603 (1cb2bf01fc754d40b2f4d224c64afbd9).
+20151025 210717.348 [63405] Goodbye.

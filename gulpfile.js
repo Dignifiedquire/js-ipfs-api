@@ -3,25 +3,24 @@ var Server = require('karma').Server
 var mocha = require('gulp-mocha')
 var ipfsd = require('ipfsd-ctl')
 var fs = require('fs')
+var runSequence = require('run-sequence')
 
-gulp.task('default', function () {
-  gulp.start('test:node', 'test:browser')
+var daemons
+
+gulp.task('default', function (done) {
+  runSequence(
+    'daemons:start',
+    'test:node',
+    'test:browser',
+    'daemons:stop',
+    done
+  )
 })
 
 gulp.task('test:node', function (done) {
-  startDisposableDaemons(function (daemons) {
-    gulp.src('test/tests.js')
-      // gulp-mocha needs filepaths so you can't have any plugins before it
-      .pipe(mocha())
-      .once('error', function () {
-        process.exit(1)
-      })
-      .once('end', function () {
-        stopDisposableDaemons(daemons, function () {
-          process.exit()
-        })
-      })
-  })
+  return gulp.src('test/tests.js')
+  // gulp-mocha needs filepaths so you can't have any plugins before it
+    .pipe(mocha())
 })
 
 gulp.task('test:browser', function (done) {
@@ -31,7 +30,7 @@ gulp.task('test:browser', function (done) {
   }, done).start()
 })
 
-function startDisposableDaemons (callback) {
+gulp.task('daeomons:start', function (callback) {
   var ipfsNodes = {} // a, b, c
   var apiAddrs = {} // a, b, c
 
@@ -44,7 +43,8 @@ function startDisposableDaemons (callback) {
     counter++
     if (counter === 3) {
       fs.writeFileSync(__dirname + '/test/tmp-disposable-nodes-addrs.json', JSON.stringify(apiAddrs))
-      callback(ipfsNodes)
+      daemons = ipfsNode
+      callback()
     }
   }
 
@@ -80,9 +80,9 @@ function startDisposableDaemons (callback) {
       })
     })
   }
-}
+})
 
-function stopDisposableDaemons (daemons, callback) {
+gulp.task('daemons:stop', function (callback) {
   stopIPFSNode(daemons, 'a', finish)
   stopIPFSNode(daemons, 'b', finish)
   stopIPFSNode(daemons, 'c', finish)
