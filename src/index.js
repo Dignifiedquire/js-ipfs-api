@@ -1,11 +1,13 @@
 var multiaddr = require('multiaddr')
-var config = require('./config')
-var requestAPI = require('./request-api')
+var defaults = require('./config')
+var request = require('./request-api')
 
 exports = module.exports = IpfsAPI
 
 function IpfsAPI (host_or_multiaddr, port) {
   var self = this
+  var config = Object.assign({}, defaults)
+  var requestAPI = request.bind(null, config)
 
   if (!(self instanceof IpfsAPI)) {
     return new IpfsAPI(host_or_multiaddr, port)

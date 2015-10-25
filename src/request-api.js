@@ -1,8 +1,6 @@
 var request = require('superagent')
 var logger = require('superagent-logger')
 
-var config = require('./config')
-
 exports = module.exports = requestAPI
 
 function safeJSONParser (buffer, res, done) {
@@ -70,7 +68,7 @@ function prepareFiles (files) {
   })
 }
 
-function requestAPI (path, args, opts, files, buffer, cb) {
+function requestAPI (config, path, args, opts, files, buffer, cb) {
   if (Array.isArray(path)) path = path.join('/')
 
   opts = opts || {}
@@ -87,6 +85,8 @@ function requestAPI (path, args, opts, files, buffer, cb) {
   delete opts.followSymlinks
 
   opts['stream-channels'] = true
+  console.log(config)
+  console.log(opts)
 
   var method = files ? 'POST' : 'GET'
   var reqPath = config['api-path'] + path
