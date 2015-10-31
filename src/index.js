@@ -1,5 +1,6 @@
 'use strict'
 
+const Promise = require('promise')
 const multiaddr = require('multiaddr')
 const getConfig = require('./config')
 const getRequestAPI = require('./request-api')
@@ -84,12 +85,14 @@ class API {
     })
   }
 
-  id (id, cb) {
-    if (typeof id === 'function') {
-      cb = id
-      id = null
-    }
-    return this.send('id', id, null, null, cb)
+  get id () {
+    return Promise.nodeify(function (id) {
+      if (typeof id === 'function') {
+        id = null
+      }
+
+      return this.send('id', id, null, null)
+    })
   }
 
   get cat () {

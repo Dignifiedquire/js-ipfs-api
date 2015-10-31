@@ -1,20 +1,24 @@
-var http = require('http')
-var qs = require('querystring')
-var getFilesStream = require('./get-files-stream')
+'use strict'
 
-exports = module.exports = function getRequestAPI (config) {
-  return requestAPI
+const Promise = require('promise')
+const http = require('http')
+const qs = require('querystring')
+const getFilesStream = require('./get-files-stream')
 
-  function requestAPI (path, args, opts, files, buffer, cb) {
-    var query, stream, contentType
-    contentType = 'application/json'
-
+function request (config, path, args, opts, files, buffer) {
+  return new Promise(function (resolve, reject) {
     if (Array.isArray(path)) path = path.join('/')
 
     opts = opts || {}
 
     if (args && !Array.isArray(args)) args = [args]
     if (args) opts.arg = args
+    if (typeof buffer === 'undefined') {
+      buffer = false
+    }
+
+    var query, stream, contentType
+    contentType = 'application/json'
 
     if (files) {
       stream = getFilesStream(files, opts)
@@ -22,11 +26,6 @@ exports = module.exports = function getRequestAPI (config) {
         throw new Error('no boundary in multipart stream')
       }
       contentType = 'multipart/form-data; boundary=' + stream.boundary
-    }
-
-    if (typeof buffer === 'function') {
-      cb = buffer
-      buffer = false
     }
 
     // this option is only used internally, not passed to daemon
@@ -53,8 +52,8 @@ exports = module.exports = function getRequestAPI (config) {
       var stream = !!res.headers && !!res.headers['x-stream-output']
       var chunkedObjects = !!res.headers && !!res.headers['x-chunked-output']
 
-      if (stream && !buffer) return cb(null, res)
-      if (chunkedObjects && buffer) return cb(null, res)
+      if (stream && !buffer) return resolve(res)
+      if (chunkedObjects && buffer) return resolve(res)
 
       res.on('data', function (chunk) {
         if (!chunkedObjects) {
@@ -84,25 +83,24 @@ exports = module.exports = function getRequestAPI (config) {
 
         if (res.statusCode >= 400 || !res.statusCode) {
           if (!data) data = new Error()
-          return cb(data, null)
+          return reject(data)
         }
-        return cb(null, data)
+
+        return resolve(data)
       })
-      res.on('error', function (err) {
-        return cb(err, null)
-      })
+      res.on('error', reject)
     })
 
-    req.on('error', function (err) {
-      return cb(err, null)
-    })
+    req.on('error', reject)
 
     if (stream) {
       stream.pipe(req)
     } else {
       req.end()
     }
+  })
+}
 
-    return req
-  }
+exports = module.exports = function getRequestAPI (config) {
+  return request.bind(null, config)
 }

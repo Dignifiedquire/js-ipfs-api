@@ -4,7 +4,6 @@ var assert = require('assert')
 var fs = require('fs')
 var path = require('path')
 var File = require('vinyl')
-var Bluebird = require('bluebird')
 
 var isNode = !global.window
 
@@ -495,6 +494,7 @@ describe('IPFS Node.js API wrapper tests', function () {
       apiClients['a'].id(function (err, res) {
         if (err) throw err
         var id = res
+        console.log(id)
         assert(id.ID)
         assert(id.PublicKey)
         done()
@@ -661,15 +661,6 @@ describe('IPFS Node.js API wrapper tests', function () {
         assert(res)
         done()
       })
-    })
-  })
-
-  describe.only('promisifcation', function () {
-    it('has all api method', function () {
-      var api = Bluebird.promisifyAll(apiClients['a'])
-
-      assert.equal(typeof api.addAsync, 'function')
-      assert.equal(typeof api.dht.findprovsAsync, 'function')
     })
   })
 })
