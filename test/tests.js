@@ -1,9 +1,10 @@
 /* global describe it before */
-var ipfsAPI = require('../src/index.js')
+var API = require('../src/index.js')
 var assert = require('assert')
 var fs = require('fs')
 var path = require('path')
 var File = require('vinyl')
+var Bluebird = require('bluebird')
 
 var isNode = !global.window
 
@@ -18,7 +19,7 @@ describe('IPFS Node.js API wrapper tests', function () {
     this.timeout(20000)
 
     Object.keys(apiAddrs).forEach(function (key) {
-      apiClients[key] = ipfsAPI(apiAddrs[key])
+      apiClients[key] = new API(apiAddrs[key])
     })
 
     done()
@@ -660,6 +661,15 @@ describe('IPFS Node.js API wrapper tests', function () {
         assert(res)
         done()
       })
+    })
+  })
+
+  describe.only('promisifcation', function () {
+    it('has all api method', function () {
+      var api = Bluebird.promisifyAll(apiClients['a'])
+
+      assert.equal(typeof api.addAsync, 'function')
+      assert.equal(typeof api.dht.findprovsAsync, 'function')
     })
   })
 })

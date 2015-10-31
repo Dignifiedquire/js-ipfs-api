@@ -56,6 +56,27 @@ export API_ORIGIN="http://localhost:8080"
 ipfs daemon
 ```
 
+### Callbacks and Promises
+
+This api is callback based, but using something like `Promise.promisifyAll` from
+[bluebird](https://github.com/petkaantonov/bluebird) it's
+very easy to use it in combination with Promises:
+
+```js
+var Promise = require('bluebird')
+
+var API = Promise.promisifyAll(require('ipfs-api'))
+
+ipfs.addAsync(files).then(function(res) {
+  res.forEach(function(file) {
+    console.log(file.Hash)
+    console.log(file.Name)
+  })
+}).catch(function (err) {
+  console.error(err)
+})
+```
+
 ## API
 
 ### Level 1 Commands
@@ -71,7 +92,7 @@ array of files can be used.
 ```javascript
 ipfs.add(files, function(err, res) {
     if(err || !res) return console.error(err)
-    
+
     res.forEach(function(file) {
         console.log(file.Hash)
         console.log(file.Name)
@@ -114,7 +135,7 @@ Retrieve the contents of a single hash, or array of hashes.
 ```javascript
 ipfs.cat(hashs, function(err, res) {
     if(err || !res) return console.error(err)
-    
+
     if(res.readable) {
         // Returned as a stream
         res.pipe(process.stdout)
@@ -141,7 +162,7 @@ Get the node structure of a hash. Included in it is a hash and array to links.
 ```javascript
 ipfs.ls(hashs, function(err, res) {
     if(err || !res) return console.error(err)
-    
+
     res.Objects.forEach(function(node) {
         console.log(node.Hash)
         console.log("Links [%d]", node.Links.length)
@@ -161,7 +182,7 @@ curl "http://localhost:5001/api/v0/ls?arg=<hash>&stream-channels=true"
 ```js
 {
     Objects: [
-        { 
+        {
             Hash: string,
             Links: [{
                 Name: string,
