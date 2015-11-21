@@ -2,7 +2,7 @@
 
 /* global describe it before */
 
-const ipfsAPI = require('../src/index.js')
+const IpfsAPI = require('../src/index.js')
 const streamEqual = require('stream-equal')
 const assert = require('assert')
 const path = require('path')
@@ -33,7 +33,7 @@ describe('IPFS Node.js API wrapper tests', () => {
     this.timeout(20000)
 
     Object.keys(apiAddrs).forEach(key => {
-      apiClients[key] = ipfsAPI(apiAddrs[key])
+      apiClients[key] = new IpfsAPI(apiAddrs[key])
     })
 
     done()

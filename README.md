@@ -22,7 +22,7 @@ $ npm install --save ipfs-api
 var ipfsAPI = require('ipfs-api')
 
 // connect to ipfs daemon API server
-var ipfs = ipfsAPI('localhost', '5001') // leaving out the arguments will default to these values
+var ipfs = new IpfsAPI('localhost', 5001) // leaving out the arguments will default to these values
 ```
 
 ### In the Browser through browserify
@@ -34,13 +34,13 @@ Same as in Node.js, you just have to [browserify](https://github.com/substack/js
 Make the [ipfsapi.min.js](/ipfsapi.min.js) available through your server and load it using a normal `<script>` tag, this will export the `ipfsAPI` constructor on the `window` object, such that:
 
 ```
-var ipfs = window.ipfsAPI('localhost', '5001')
+var ipfs = new window.ipfsAPI('localhost', 5001)
 ```
 
 If you omit the host and port, the api will parse `window.host`, and use this information. This also works, and can be useful if you want to write apps that can be run from multiple different gateways:
 
 ```
-var ipfs = window.ipfsAPI()
+var ipfs = new window.ipfsAPI()
 ```
 
 #### Gotchas
