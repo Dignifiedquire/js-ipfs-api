@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3>ipfs-api 2.9.1</h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>IPFS API wrapper library in JavaScript</h1><p><a href="http://ipn.io"><img src="https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square" alt=""></a> <a href="http://ipfs.io/"><img src="https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square" alt=""></a> <a href="http://webchat.freenode.net/?channels=%23ipfs"><img src="https://img.shields.io/badge/freejs-%23ipfs-blue.svg?style=flat-square" alt=""></a>
+<a href="https://david-dm.org/ipfs/js-ipfs-api"><img src="https://david-dm.org/ipfs/js-ipfs-api.svg?style=flat-square" alt="Dependency Status"></a>
+<a href="https://travis-ci.org/ipfs/js-ipfs-api"><img src="https://travis-ci.org/ipfs/js-ipfs-api.svg?branch=master" alt="Travis CI"></a>
+<a href="https://circleci.com/gh/ipfs/js-ipfs-api"><img src="https://circleci.com/gh/ipfs/js-ipfs-api.svg?style=svg" alt="Circle CI"></a></p>
+<blockquote>
+<p>A client library for the IPFS API.</p>
+</blockquote>
+<h1>Usage</h1><h2>Installing the module</h2><h3>In Node.js Through npm</h3><pre class="prettyprint source lang-bash"><code>$ npm install --save ipfs-api</code></pre><pre class="prettyprint source lang-javascript"><code>var ipfsAPI = require('ipfs-api')
+
+// connect to ipfs daemon API server
+var ipfs = ipfsAPI('localhost', '5001') // leaving out the arguments will default to these values</code></pre><h3>In the Browser through browserify</h3><p>Same as in Node.js, you just have to <a href="https://github.com/substack/js-browserify">browserify</a> the code before serving it. See the browserify repo for how to do that.</p>
+<h3>In the Browser through <code>&lt;script&gt;</code> tag</h3><p>Make the <a href="/ipfsapi.min.js">ipfsapi.min.js</a> available through your server and load it using a normal <code>&lt;script&gt;</code> tag, this will export the <code>ipfsAPI</code> constructor on the <code>window</code> object, such that:</p>
+<pre class="prettyprint source"><code>var ipfs = window.ipfsAPI('localhost', '5001')</code></pre><p>If you omit the host and port, the api will parse <code>window.host</code>, and use this information. This also works, and can be useful if you want to write apps that can be run from multiple different gateways:</p>
+<pre class="prettyprint source"><code>var ipfs = window.ipfsAPI()</code></pre><h4>Gotchas</h4><p>When using the api from script tag for things that require buffers (<code>ipfs.add</code>, for example), you will have to use either the exposed <code>ipfs.Buffer</code>, that works just like a node buffer, or use this <a href="https://github.com/feross/buffer">browser buffer</a>.</p>
+<h2>CORS</h2><p>If are using this module in a browser with something like browserify, then you will get an error saying that the origin is not allowed. This would be a CORS (&quot;Cross Origin Resource Sharing&quot;) failure. The ipfs server rejects requests from unknown domains by default. You can whitelist the domain that you are calling from by exporting <code>API_ORIGIN</code> and restarting the daemon, like:</p>
+<pre class="prettyprint source lang-bash"><code>export API_ORIGIN=&quot;http://localhost:8080&quot;
+ipfs daemon</code></pre><h2>API</h2><h3>Level 1 Commands</h3><p>Level 1 commands are simple commands</p>
+<h4>add</h4><p>Add a file (where file is any data) to ipfs returning the hash and name. The
+name value will only be set if you are actually sending a file. A single or
+array of files can be used.</p>
+<p><strong>Usage</strong></p>
+<pre class="prettyprint source lang-javascript"><code>ipfs.add(files, function(err, res) {
+    if(err || !res) return console.error(err)
+
+    res.forEach(function(file) {
+        console.log(file.Hash)
+        console.log(file.Name)
+    })
+})</code></pre><p><code>files</code> can be a mixed array of filenames or buffers of data. A single value is
+also acceptable.</p>
+<p>Example</p>
+<pre class="prettyprint source lang-js"><code>var files = [&quot;../files/hello.txt&quot;, new Buffer(&quot;ipfs!&quot;)]
+var files = &quot;../files/hello.txt&quot;</code></pre><p><strong>Curl</strong></p>
+<pre class="prettyprint source lang-sh"><code>curl 'http://localhost:5001/api/v0/add?stream-channels=true' \
+-H 'content-type: multipart/form-data; boundary=a831rwxi1a3gzaorw1w2z49dlsor' \
+-H 'Connection: keep-alive' \
+--data-binary $'--a831rwxi1a3gzaorw1w2z49dlsor\r\nContent-Type: application/octet-stream\r\nContent-Disposition: file; name=&quot;file&quot;; filename=&quot;Hello.txt&quot;\r\n\r\nhello--a831rwxi1a3gzaorw1w2z49dlsor--' --compressed</code></pre><p><strong>Response</strong></p>
+<pre class="prettyprint source lang-js"><code>[{
+    Hash: string,
+    Name: string
+}, ...]</code></pre><p><em>The name value will only be set for actual files.</em></p>
+<h4>cat</h4><p>Retrieve the contents of a single hash, or array of hashes.</p>
+<p><strong>Usage</strong></p>
+<pre class="prettyprint source lang-javascript"><code>ipfs.cat(hashs, function(err, res) {
+    if(err || !res) return console.error(err)
+
+    if(res.readable) {
+        // Returned as a stream
+        res.pipe(process.stdout)
+    } else {
+        // Returned as a string
+        console.log(res)
+    }
+})</code></pre><p><strong>Curl</strong></p>
+<pre class="prettyprint source lang-sh"><code>curl &quot;http://localhost:5001/api/v0/cat?arg=&lt;hash>&stream-channels=true&quot;</code></pre><p><strong>Response</strong></p>
+<p>The response is either a readable stream, or a string.</p>
+<h4>ls</h4><p>Get the node structure of a hash. Included in it is a hash and array to links.</p>
+<p><strong>Usage</strong></p>
+<pre class="prettyprint source lang-javascript"><code>ipfs.ls(hashs, function(err, res) {
+    if(err || !res) return console.error(err)
+
+    res.Objects.forEach(function(node) {
+        console.log(node.Hash)
+        console.log(&quot;Links [%d]&quot;, node.Links.length)
+        node.Links.forEach(function(link, i) {
+            console.log(&quot;[%d]&quot;, i, link)
+        })
+    })
+})</code></pre><p><strong>Curl</strong></p>
+<pre class="prettyprint source lang-sh"><code>curl &quot;http://localhost:5001/api/v0/ls?arg=&lt;hash>&stream-channels=true&quot;</code></pre><p><strong>Response</strong></p>
+<pre class="prettyprint source lang-js"><code>{
+    Objects: [
+        {
+            Hash: string,
+            Links: [{
+                Name: string,
+                Hash: string,
+                Size: number
+            }, ...]
+        },
+        ....
+    ]
+}</code></pre><p><strong>version</strong></p>
+<p><strong>commands</strong></p>
+<h3>Level 2 Commands</h3><p>Level 2 commands are simply named spaced wrapped commands</p>
+<h4>Config</h4><h4>Update</h4><h4>Mount</h4><h4>Diag</h4><h4>Block</h4><h4>Object</h4><p><strong>Curl</strong></p>
+<pre class="prettyprint source lang-sh"><code>curl 'http://localhost:5001/api/v0/object/get?arg=QmYEqnfCZp7a39Gxrgyv3qRS4MoCTGjegKV6zroU3Rvr52&stream-channels=true' --compressed</code></pre><p><strong>Response</strong></p>
+<pre class="prettyprint source lang-js"><code>{
+    Links: [{
+        Name: string,
+        Hash: string,
+        Size: number
+    }, ...],
+    Data: string
+}</code></pre><p><em>Data is base64 encoded.</em></p>
+<h4>Swarm</h4><h4>Pin</h4><h4>Gateway</h4></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="IpfsAPI.html">IpfsAPI</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Nov 21 2015 19:15:52 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
