@@ -1,5 +1,8 @@
+/* eslint-env mocha */
+/* globals apiClients */
 'use strict'
 
+const expect = require('chai').expect
 const Readable = require('stream').Readable
 const path = require('path')
 const isNode = require('detect-node')
@@ -29,8 +32,8 @@ describe('.add', () => {
       content: new Buffer(testfile)
     }
 
-    apiClients['a'].add([file], (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add([file], (err, res) => {
+      expect(err).to.not.exist()
 
       const added = res[0] != null ? res[0] : res
       expect(added).to.have.property('Hash', 'Qma4hjFTnCasJ8PVp3mZbZK5g2vGDT4LByLJ7m8ciyRFZP')
@@ -41,8 +44,8 @@ describe('.add', () => {
 
   it('add buffer', (done) => {
     let buf = new Buffer(testfile)
-    apiClients['a'].add(buf, (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add(buf, (err, res) => {
+      expect(err).to.not.exist()
 
       expect(res).to.have.length(1)
       expect(res[0]).to.have.property('Hash', 'Qma4hjFTnCasJ8PVp3mZbZK5g2vGDT4LByLJ7m8ciyRFZP')
@@ -55,8 +58,8 @@ describe('.add', () => {
       return done()
     }
 
-    apiClients['a'].add(testfileBig, (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add(testfileBig, (err, res) => {
+      expect(err).to.not.exist()
 
       expect(res).to.have.length(1)
       expect(res[0]).to.have.a.property('Hash', 'Qme79tX2bViL26vNjPsF3DP1R9rMKMvnPYJiKTTKPrXJjq')
@@ -69,8 +72,8 @@ describe('.add', () => {
       return done()
     }
 
-    apiClients['a'].add(testfilePath, (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add(testfilePath, (err, res) => {
+      expect(err).to.not.exist()
 
       const added = res[0] != null ? res[0] : res
       expect(added).to.have.property('Hash', 'Qma4hjFTnCasJ8PVp3mZbZK5g2vGDT4LByLJ7m8ciyRFZP')
@@ -79,9 +82,9 @@ describe('.add', () => {
   })
 
   it('add a nested dir following symlinks', (done) => {
-    apiClients['a'].add(path.join(__dirname, '/../test-folder'), { recursive: true }, (err, res) => {
+    apiClients.a.add(path.join(__dirname, '/../test-folder'), { recursive: true }, (err, res) => {
       if (isNode) {
-        expect(err).to.not.exist
+        expect(err).to.not.exist()
 
         const added = res[res.length - 1]
         expect(added).to.have.property('Hash', 'QmRNjDeKStKGTQXnJ2NFqeQ9oW23WcpbmvCVrpDHgDg3T6')
@@ -102,9 +105,9 @@ describe('.add', () => {
   })
 
   it('add a nested dir without following symlinks', (done) => {
-    apiClients['a'].add(path.join(__dirname, '/../test-folder'), { recursive: true, followSymlinks: false }, (err, res) => {
+    apiClients.a.add(path.join(__dirname, '/../test-folder'), { recursive: true, followSymlinks: false }, (err, res) => {
       if (isNode) {
-        expect(err).to.not.exist
+        expect(err).to.not.exist()
 
         const added = res[res.length - 1]
         // same hash as the result from the cli (ipfs add test/test-folder -r)
@@ -139,8 +142,8 @@ describe('.add', () => {
       }
     ]
 
-    apiClients['a'].add(dirs, { recursive: true }, (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add(dirs, { recursive: true }, (err, res) => {
+      expect(err).to.not.exist()
 
       const added = res[res.length - 1]
       expect(added).to.have.property('Hash', 'QmTDH2RXGn8XyDAo9YyfbZAUXwL1FCr44YJCN9HBZmL9Gj')
@@ -153,8 +156,8 @@ describe('.add', () => {
     stream.push('Hello world')
     stream.push(null)
 
-    apiClients['a'].add(stream, (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add(stream, (err, res) => {
+      expect(err).to.not.exist()
 
       const added = res[0] != null ? res[0] : res
       expect(added).to.have.a.property('Hash', 'QmNRCQWfgze6AbBCaT1rkrkV5tJ2aP4oTNPb5JZcXYywve')
@@ -164,8 +167,8 @@ describe('.add', () => {
 
   it('add url', (done) => {
     const url = 'https://raw.githubusercontent.com/ipfs/js-ipfs-api/2a9cc63d7427353f2145af6b1a768a69e67c0588/README.md'
-    apiClients['a'].add(url, (err, res) => {
-      expect(err).to.not.exist
+    apiClients.a.add(url, (err, res) => {
+      expect(err).to.not.exist()
 
       const added = res[0] != null ? res[0] : res
       expect(added).to.have.a.property('Hash', 'QmZmHgEX9baxUn3qMjsEXQzG6DyNcrVnwieQQTrpDdrFvt')
@@ -176,7 +179,7 @@ describe('.add', () => {
   describe('promise', () => {
     it('add buffer', () => {
       let buf = new Buffer(testfile)
-      return apiClients['a'].add(buf)
+      return apiClients.a.add(buf)
         .then((res) => {
           expect(res).to.have.length(1)
           expect(res[0]).to.have.property('Hash', 'Qma4hjFTnCasJ8PVp3mZbZK5g2vGDT4LByLJ7m8ciyRFZP')

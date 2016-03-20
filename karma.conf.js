@@ -1,3 +1,5 @@
+'use strict'
+
 const webpackConfig = require('./tasks/config').webpack
 
 module.exports = function (config) {

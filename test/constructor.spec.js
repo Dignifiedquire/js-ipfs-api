@@ -1,4 +1,7 @@
+/* eslint-env mocha */
 'use strict'
+
+const expect = require('chai').expect
 
 const ipfsAPI = require('../src/index.js')
 
@@ -9,7 +12,7 @@ describe('ipfsAPI constructor tests', () => {
 
     function clientWorks (client, done) {
       client.id((err, id) => {
-        expect(err).to.not.exist
+        expect(err).to.not.exist()
 
         expect(id).to.have.a.property('ID')
         expect(id).to.have.a.property('PublicKey')
